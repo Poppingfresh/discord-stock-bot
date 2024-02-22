@@ -316,22 +316,29 @@ export const MilkCommand: ICommand = {
 			await message.reply({ files : ["./src/commands/Fuck/images/ohio.gif"] })
 			break;
 		case 1:
-			const fs = require('fs')
-			const fileContent = fs.readFileSync('./src/commands/Fuck/images/Bridges.txt', 'utf-8');
-			const lines = fileContent.split('\n');
-			const line = lines[Math.floor(Math.random() * lines.length)]
-			await message.reply(line)
-			break;
+			let url = 'https://finviz.com/screener.ashx?v=110&s=ta_topgainers';
+			const table = await getFinvizScreenWholeTable(url);
+			const arrayLength = Math.min(table.length, 5);
+			const fields = table.slice(0, arrayLength).map((value) => ({
+				name: value.ticker,
+				value: `Price: ${value.price} Change: ${value.change}`,
+			}));
+			await message.reply("$"+fields[Math.floor(Math.random() * arrayLength)-1].name)
+			await message.reply("did you listen???")
 		case 2:
 			await message.reply("Just lmao that the market is pumping. Of course it is. Gotta love that rational and efficient market!")
 			break;
 		case 3:
-			await message.reply("I see the current S&P 500 as a colossal suspension bridge pushed to its limits. \
-The market resembles a structure with cables drawn tightly, mirroring an elevated price-to-earnings ratio. The \
-economic landscape appears as turbulent winds, with inflation as the wind shear pushing the structure to its absolute limits. \
-I believe investors should navigate cautiously. These turbulent times are going to stress the metaphorical bridge and those slight vibrations of \
-uncertainty will most likely turn into a resonant vibration that will bring down the entire financial system. \ Consider a portfolio recalibration to ensure \
-you can stay afloat in the ever-changing financial landscape.")
+			let url_fa = 'https://finviz.com/screener.ashx?v=111&f=cap_largeover,exch_nyse,fa_fpe_high,fa_pe_high';
+			const table1 = await getFinvizScreenWholeTable(url_fa);
+			const arrayLength1 = Math.min(table1.length, 5);
+			const fields1 = table1.slice(0, arrayLength1).map((value) => ({
+				name: value.ticker,
+				value: `Price: ${value.price} Change: ${value.change}`,
+			}));
+			await message.reply("!fa "+fields1[Math.floor(Math.random() * arrayLength1)-1].name)
+			await message.reply("Now here's a stock with a sane P/E to invest in...")
+			break;
 			break;
 		case 4:
 			let url = 'https://finviz.com/screener.ashx?v=110&s=ta_topgainers';
