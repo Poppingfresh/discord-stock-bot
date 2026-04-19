@@ -481,8 +481,17 @@ export const HurfCommand: ICommand = {
       const arg = args[1].toLowerCase();
       let line1: string | undefined;
 
-      // 50% chance to try Claude-powered HurfBot API
-      if (Math.random() < 0.5) try {
+      // Search static file for whole-word matches only
+      const fs1 = require('fs');
+      const fileContent1 = fs1.readFileSync('./src/commands/Fuck/images/hurfGPT_lite.txt', 'utf-8');
+      const lines1 = fileContent1.split('\n').filter((l: string) => l.trim() !== '');
+      const entireWord = new RegExp(`\\b${arg}\\b`, 'i');
+      const matches = lines1.filter((line: string) => entireWord.test(line));
+      const termFound = matches.length > 0;
+
+      // If term found: 50/50 Claude vs static. If not found: 80% Claude, 20% static.
+      const claudeChance = termFound ? 0.5 : 0.8;
+      if (Math.random() < claudeChance) try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
         const response = await fetch('http://137.184.18.74:3422/hurf', {
@@ -500,22 +509,12 @@ export const HurfCommand: ICommand = {
         console.error('HurfBot API unavailable, falling back to static file:', err);
       }
 
-      // Fall back to static file if API failed
+      // Use static file if Claude wasn't chosen or failed
       if (!line1) {
-        const fs1 = require('fs');
-        const fileContent1 = fs1.readFileSync('./src/commands/Fuck/images/hurfGPT_lite.txt', 'utf-8');
-        const lines1 = fileContent1.split('\n');
-        const entireWord = new RegExp(`\\b${arg}\\b`, 'i');
-        const match = lines1.filter((line: string) => entireWord.test(line.toLowerCase()));
-        if (match.length > 0) {
-          line1 = match[Math.floor(Math.random() * match.length)];
+        if (termFound) {
+          line1 = matches[Math.floor(Math.random() * matches.length)];
         } else {
-          const match2 = lines1.filter((line: string) => line.toLowerCase().includes(arg));
-          if (match2.length > 0) {
-            line1 = match2[Math.floor(Math.random() * match2.length)];
-          } else {
-            line1 = lines1[Math.floor(Math.random() * lines1.length)];
-          }
+          line1 = lines1[Math.floor(Math.random() * lines1.length)];
         }
       }
 
@@ -901,16 +900,17 @@ export const PopCommand: ICommand = {
   // RIP to the OG, time to pass the torch of tooter lolz
   // trigger: (msg: Message) => (msg.author.id === '138980525225279488'),
   // Anyone can trigger, but the primary target gets weighted higher odds
-  trigger: (msg: Message) => (!msg.author.bot),
+  trigger: (msg: Message) => true,
   command: async (message: Message) => {
+  	if (message.author.bot) return;
   	const PRIMARY_TARGET = '176191178285383680';
   	const isPrimaryTarget = message.author.id === PRIMARY_TARGET;
-  	// Primary target keeps original 1-in-500 odds, everyone else gets 1-in-5000
-  	const pool = isPrimaryTarget ? 500 : 5000;
+  	// Primary target keeps original 1-in-500 odds, everyone else gets 1-in-2000
+  	const pool = isPrimaryTarget ? 500 : 2000;
   	let i_rand = Math.floor(Math.random() * pool);
 		if (message.content.includes('LOL')) {
-			// Primary target: 10% chance (50/500), everyone else: 1% chance (5/5000)
-			const threshold = isPrimaryTarget ? 50 : 5;
+			// Primary target: 10% chance (50/500), everyone else: 2.5% chance (50/2000)
+			const threshold = 50;
 			if (i_rand < threshold) {
 				await message.reply({ files : ["./src/commands/Fuck/images/yawn.gif"] })
 			}
@@ -919,7 +919,7 @@ export const PopCommand: ICommand = {
 			if ((Date.now() - lolclockcheck) < cooldown) {
 				return Promise.resolve();
 			}
-			// Odds scale with the pool: 1/500 for primary, 1/5000 for everyone else
+			// Odds scale with the pool: 1/500 for primary, 1/2000 for everyone else
 			if (i_rand == 22) {
 				await message.reply("LOL");
 				lolclockcheck = Date.now();
