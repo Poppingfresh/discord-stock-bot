@@ -1,45 +1,27 @@
-import fs from 'fs';
+import Database from 'better-sqlite3';
 import path from 'path';
 
-const HISTORY_FILE = path.join(__dirname, '../commands/TickerTracker/ticker_history.json');
+const DB_PATH = process.env.TICKER_DB_PATH ?? path.join(__dirname, '../commands/TickerTracker/ticker_history.db');
 const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
 
-interface TickerRecord {
-  ticker: string;
-  userId: string;
-  username: string;
-  ts: number;
-}
+const db = new Database(DB_PATH);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS ticker_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticker TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    username TEXT NOT NULL,
+    ts INTEGER NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS idx_ts ON ticker_history(ts);
+  CREATE INDEX IF NOT EXISTS idx_ticker ON ticker_history(ticker);
+  CREATE INDEX IF NOT EXISTS idx_userId ON ticker_history(userId);
+`);
 
 interface TickerCount {
   _id: string;
   count: number;
-}
-
-function loadRecords(): TickerRecord[] {
-  try {
-    if (!fs.existsSync(HISTORY_FILE)) return [];
-    return JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8')) as TickerRecord[];
-  } catch {
-    return [];
-  }
-}
-
-function saveRecords(records: TickerRecord[]): void {
-  const cutoff = Date.now() - NINETY_DAYS_MS;
-  const trimmed = records.filter((r) => r.ts >= cutoff);
-  fs.writeFileSync(HISTORY_FILE, JSON.stringify(trimmed, null, 2), 'utf8');
-}
-
-function topCounts(records: TickerRecord[], limit: number): TickerCount[] {
-  const counts = new Map<string, number>();
-  for (const r of records) {
-    counts.set(r.ticker, (counts.get(r.ticker) ?? 0) + 1);
-  }
-  return [...counts.entries()]
-    .map(([_id, count]) => ({ _id, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, limit);
 }
 
 export class TickerTracker {
@@ -60,18 +42,26 @@ export class TickerTracker {
   }
 
   static postTicker(ticker: string, userId: string, username: string): void {
-    const records = loadRecords();
-    records.push({ ticker: ticker.toLowerCase(), userId, username, ts: Date.now() });
-    saveRecords(records);
+    const cutoff = Date.now() - NINETY_DAYS_MS;
+    db.prepare('DELETE FROM ticker_history WHERE ts < ?').run(cutoff);
+    db.prepare('INSERT INTO ticker_history (ticker, userId, username, ts) VALUES (?, ?, ?, ?)').run(
+      ticker.toLowerCase(), userId, username, Date.now()
+    );
   }
 
   static getTickers(limit: number): TickerCount[] {
-    return topCounts(loadRecords(), limit);
+    return db
+      .prepare('SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history GROUP BY ticker ORDER BY count DESC LIMIT ?')
+      .all(limit) as TickerCount[];
   }
 
   static getTickersByUser(limit: number, query: string): TickerCount[] {
     const q = query.toLowerCase();
-    return topCounts(loadRecords().filter((r) => r.userId === query || r.username.toLowerCase() === q), limit);
+    return db
+      .prepare(
+        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE userId = ? OR LOWER(username) = ? GROUP BY ticker ORDER BY count DESC LIMIT ?'
+      )
+      .all(query, q, limit) as TickerCount[];
   }
 
   static getTickersByTime(limit: number, period: string): TickerCount[] {
@@ -81,6 +71,10 @@ export class TickerTracker {
       m: 30 * 24 * 60 * 60 * 1000,
     };
     const cutoff = Date.now() - (periodMs[period] ?? periodMs['d']);
-    return topCounts(loadRecords().filter((r) => r.ts >= cutoff), limit);
+    return db
+      .prepare(
+        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE ts >= ? GROUP BY ticker ORDER BY count DESC LIMIT ?'
+      )
+      .all(cutoff, limit) as TickerCount[];
   }
 }
