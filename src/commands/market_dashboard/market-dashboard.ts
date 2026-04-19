@@ -411,39 +411,29 @@ export const VixReturnsCommand: ICommand = {
 
 export const RelChartCommand: ICommand = {
   name: 'Relative Percent Chart',
-  helpDescription: '!rel [ticker1] [ticker2] [start_date (YYYY-MM-DD)] [end_date (YYYY-MM-DD)]',
+  helpDescription: '!rel [ticker1] [ticker2] ... [start_date (YYYY-MM-DD)] [end_date (YYYY-MM-DD)]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!rel'),
   command: async (message: Message, services: any) => {
-  let ticker_1 = "SPY";
-  let ticker_2 = "QQQ"
-  let start_date = "1111-11-11"
-  let end_date = "1111-11-11"
-  const args = message.content.toLowerCase().split(' ');
-  if(args.length == 2)
-  {
-    ticker_1 = args[1];
+  const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  const args = message.content.toLowerCase().split(' ').slice(1);
+  const dates: string[] = [];
+  const tickers: string[] = [];
+
+  for (const arg of args) {
+    if (DATE_RE.test(arg)) {
+      dates.push(arg);
+    } else if (arg.length > 0) {
+      tickers.push(arg);
+    }
   }
-  else if(args.length == 3)
-  {
-    ticker_1 = args[1];
-    ticker_2 = args[2];
-  }
-  else if(args.length == 4)
-  {
-    ticker_1 = args[1];
-	ticker_2 = args[2]
-    start_date = args[3];
-  }
-  else if(args.length == 5)
-  {
-    ticker_1 = args[1];
-	ticker_2 = args[2]
-    start_date = args[3];
-	end_date = args[4]
-  }
+
+  const tickerStr = tickers.length > 0 ? tickers.join(',') : 'SPY,QQQ';
+  const start_date = dates[0] ?? '1111-11-11';
+  const end_date = dates[1] ?? '1111-11-11';
+
   try{
-    const image = await got(`${process.env.MARKET_DASHBOARD_URI}/relChartMain/${ticker_1}/${ticker_2}/${start_date}/${end_date}`);
+    const image = await got(`${process.env.MARKET_DASHBOARD_URI}/relChartMain/${tickerStr}/${start_date}/${end_date}`);
     await message.channel
       .send(
         {
@@ -452,7 +442,7 @@ export const RelChartCommand: ICommand = {
           ],
         },
       );
-  
+
   } catch(e)
   {
     console.error(e);
