@@ -26,6 +26,7 @@ import { CorrelationCommand, RealizedVolCommand, RelRotGraphCommand, DressingCom
 import { VolConeCommand, PairsCommand, CoTCommand, VixBinsCommand, VixReturnsCommand, RelChartCommand, VolSheetCommand } from './commands/market_dashboard';
 import { VixCurveCommand, MomoDashCommand, MaxLossCommand, VRPCommand } from './commands/market_dashboard';
 import { ExtendHoursCommand } from './commands/ExtendHours';
+import { TickerTrackerCommand } from './commands/TickerTracker';
 
 export const commandList: ICommand[] = [
   FuturesCommand,
@@ -62,5 +63,6 @@ export const commandList: ICommand[] = [
   VolSheetCommand, MomoDashCommand, MaxLossCommand,
   RelChartCommand, VixCurveCommand, VRPCommand,
   HeatMap, DumpItCommand, PumpItCommand, LateCommand, MalakaCommand,
-  JowsCommand, PoorCommand
+  JowsCommand, PoorCommand,
+  TickerTrackerCommand,
 ];

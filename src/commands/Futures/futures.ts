@@ -91,6 +91,8 @@ export const FuturesCommand: ICommand = {
 			  ],
 			},
 		  );
+		TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+		TickerTracker.postTicker(ogTicker, message.author.id, message.member?.displayName ?? message.author.username);
 		return Promise.resolve();
 	} else {
 		let ticker = message.content.toLowerCase().split(' ')[0].substring(2);
@@ -113,6 +115,8 @@ export const FuturesCommand: ICommand = {
 				],
 			  },
 			);
+			TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+			TickerTracker.postTicker(ogTicker, message.author.id, message.member?.displayName ?? message.author.username);
 		  } else {
 			const fs = require('fs')
 			const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');

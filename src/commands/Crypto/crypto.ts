@@ -26,6 +26,7 @@ export const CryptoCommand: ICommand = {
       });
 
     TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+    TickerTracker.postTicker(ticker, message.author.id, message.member?.displayName ?? message.author.username);
     return Promise.resolve();
   },
 };

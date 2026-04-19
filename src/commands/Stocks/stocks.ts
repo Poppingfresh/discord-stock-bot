@@ -143,7 +143,8 @@ export const StocksCommand: ICommand = {
                       }],
                   },
                 );
-              //TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+              TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+              TickerTracker.postTicker(ticker, message.author.id, message.member?.displayName ?? message.author.username);
               } else {
                 const fs = require('fs')
                 const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
