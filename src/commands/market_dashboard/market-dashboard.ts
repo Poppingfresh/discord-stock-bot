@@ -575,10 +575,14 @@ export const VRPCommand: ICommand = {
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!vrp'),
   command: async (message: Message, services: any) => {
-	const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/3_1_IV_contango.png`);
-	await message.channel.send({files: [image.rawBody]});
-	const image2 = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/VRPremia.png`);
-	await message.channel.send({files: [image2.rawBody]});
-	return Promise.resolve();
+    try {
+      const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/3_1_IV_contango.png`);
+      await message.channel.send({files: [image.rawBody]});
+      const image2 = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/VRPremia.png`);
+      await message.channel.send({files: [image2.rawBody]});
+    } catch (e) {
+      console.error('VRPCommand fetch error:', e);
+    }
+    return Promise.resolve();
   },
 };

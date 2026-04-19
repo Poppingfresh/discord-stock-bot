@@ -126,13 +126,14 @@ export const StocksCommand: ICommand = {
         if (rawOptions.find((v) => v === 'moon')) {
           await drawMoon(imgFile, message);
         } else {
-          let file = await got(imgFile);
-          await new Promise(resolve => setTimeout(resolve, 500));
-          
-          if (!file.body || file.body.length === 0) {
-            file = await got(imgFile);
-          }
-          
+          try {
+            let file = await got(imgFile, { timeout: { request: 15000 } });
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            if (!file.body || file.body.length === 0) {
+              file = await got(imgFile, { timeout: { request: 15000 } });
+            }
+
             const fSize = Buffer.byteLength(file.body);
             if (fSize > 12000 && ticker.length < 6) {
               const sentMessage = await message.channel.send(
@@ -145,13 +146,21 @@ export const StocksCommand: ICommand = {
                 );
               TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
               TickerTracker.postTicker(ticker, message.author.id, message.member?.displayName ?? message.author.username);
-              } else {
-                const fs = require('fs')
-                const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
-                const lines = fileContent.split('\n');
-                const line = lines[Math.floor(Math.random() * lines.length)]
-                await message.reply(line)
-              }
+            } else {
+              const fs = require('fs')
+              const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
+              const lines = fileContent.split('\n');
+              const line = lines[Math.floor(Math.random() * lines.length)]
+              await message.reply(line)
+            }
+          } catch (e) {
+            console.error(`StocksCommand error for ticker ${ticker}:`, e);
+            const fs = require('fs')
+            const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
+            const lines = fileContent.split('\n');
+            const line = lines[Math.floor(Math.random() * lines.length)]
+            await message.reply(line)
+          }
         }
     } else {
       await message.reply('No' + message.author.toString())
@@ -168,28 +177,27 @@ export const StockCharts: ICommand = {
     let ticker = message.content.toLowerCase().split(' ')[1];
     ticker = getTicker(ticker);
 
-    const image = await got(`https://stockcharts.com/c-sc/sc?s=${encodeURI(ticker)}&p=D&b=5&g=0&i=t7180212229c&r=1630253926270.png`, { retry: { limit: 2 } });
-	await new Promise(resolve => setTimeout(resolve, 250));
-	const fSize = Buffer.byteLength(image.body);
-	if (fSize > 12000) {
-      const sentMessage = await message.channel
-        .send(
-          {
-            files: [{
-              attachment: image.rawBody,
-              name: `${ticker}-chart.png`
-            }],
-          },
-        );
-		TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
-    } else {
-	  const fs = require('fs')
-	  const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
-	  const lines = fileContent.split('\n');
-	  const line = lines[Math.floor(Math.random() * lines.length)]
-	  await message.reply(line)
-	}
-    
+    try {
+      const image = await got(`https://stockcharts.com/c-sc/sc?s=${encodeURI(ticker)}&p=D&b=5&g=0&i=t7180212229c&r=1630253926270.png`, { retry: { limit: 2 }, timeout: { request: 15000 } });
+      await new Promise(resolve => setTimeout(resolve, 250));
+      const fSize = Buffer.byteLength(image.body);
+      if (fSize > 12000) {
+        const sentMessage = await message.channel.send({
+          files: [{ attachment: image.rawBody, name: `${ticker}-chart.png` }],
+        });
+        TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
+      } else {
+        const fs = require('fs');
+        const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
+        const lines = fileContent.split('\n');
+        const line = lines[Math.floor(Math.random() * lines.length)];
+        await message.reply(line);
+      }
+    } catch (e) {
+      console.error(`StockCharts error for ticker ${ticker}:`, e);
+      await message.reply(`Couldn't fetch chart for ${ticker}.`);
+    }
+
     return Promise.resolve();
   },
 };
@@ -200,8 +208,12 @@ export const HeatMap: ICommand = {
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!hm'),
   command: async (message: Message) => {
-    const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/hm.png`, { retry: { limit: 2 } });
-    await new Promise(resolve => setTimeout(resolve, 250));
-    await message.channel.send({files: [{attachment: image.rawBody, name: 'heatmap.png'}]});
+    try {
+      const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/hm.png`, { retry: { limit: 2 }, timeout: { request: 15000 } });
+      await new Promise(resolve => setTimeout(resolve, 250));
+      await message.channel.send({files: [{attachment: image.rawBody, name: 'heatmap.png'}]});
+    } catch (e) {
+      console.error('HeatMap fetch error:', e);
+    }
   },
 };

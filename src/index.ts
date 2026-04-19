@@ -17,7 +17,11 @@ client.on('messageCreate', (msg) => {
   const commands = commandList.filter((command) => command.trigger(msg));
   Promise.all(commands.map(async (command) => {
     command.command(msg, { cache });
-  })).then();
+  })).catch((e) => console.error('Unhandled command error:', e));
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled promise rejection:', reason);
 });
 
 client.login(process.env.TOKEN);
