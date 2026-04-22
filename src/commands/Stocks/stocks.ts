@@ -7,7 +7,7 @@ import { drawMoon } from './moon';
 import { TickerTracker } from '../../services/tickerTracker';
 
 const tickerAlias = new Map([
-  ['tim', 'aapl'],
+  ['tim', 'aapl', 'john', 'johnny'],
   ['lisa', 'amd'],
   ['mouse', 'dis'],
   ['jeff', 'amzn'],
