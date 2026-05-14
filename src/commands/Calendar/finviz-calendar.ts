@@ -10,15 +10,17 @@ const TODAY_MAP: Record<number, string> = {
   1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri',
 };
 
+const IMPACT: Record<number, string> = { 3: 'H', 2: 'M', 1: 'L', 0: '-' };
+
 const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
 function formatDay(day: { day: string; date: string; events: any[] }): string {
   const header = `${day.day} ${day.date}  (${day.events.length} events)`;
-  const sep = '─'.repeat(58);
-  const colHeader = `${'Time'.padEnd(9)}${'Release'.padEnd(38)}${'Actual'.padEnd(9)}Prior`;
+  const sep = '─'.repeat(48);
+  const colHeader = `${'Time'.padEnd(9)}${'Release'.padEnd(36)}I`;
 
   const rows = day.events.map((e) =>
-    `${pad(e.time, 9)}${pad(e.release, 38)}${pad(e.actual, 9)}${e.prior}`
+    `${pad(e.time, 9)}${pad(e.release, 36)}${IMPACT[e.impact] ?? '-'}`
   );
 
   return [header, sep, colHeader, sep, ...rows].join('\n');
