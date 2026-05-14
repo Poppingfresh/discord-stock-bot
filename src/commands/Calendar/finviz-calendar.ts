@@ -2,8 +2,6 @@ import * as fs from 'fs';
 
 const CALENDAR_PATH = '/home/discord-stock-bot/data/calendar.json';
 
-const IMPACT: Record<number, string> = { 3: 'H', 2: 'M', 1: 'L', 0: '-' };
-
 const DAY_ARGS: Record<string, string> = {
   mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri',
 };
@@ -16,11 +14,11 @@ const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
 function formatDay(day: { day: string; date: string; events: any[] }): string {
   const header = `${day.day} ${day.date}  (${day.events.length} events)`;
-  const sep = '─'.repeat(74);
-  const colHeader = `${'Time'.padEnd(9)}${'Release'.padEnd(31)}${'I'.padEnd(4)}${'Per'.padEnd(7)}${'Actual'.padEnd(9)}${'Exp'.padEnd(9)}Prior`;
+  const sep = '─'.repeat(58);
+  const colHeader = `${'Time'.padEnd(9)}${'Release'.padEnd(38)}${'Actual'.padEnd(9)}Prior`;
 
   const rows = day.events.map((e) =>
-    `${pad(e.time, 9)}${pad(e.release, 31)}${(IMPACT[e.impact] ?? '-').padEnd(4)}${pad(e.period, 7)}${pad(e.actual, 9)}${pad(e.expected, 9)}${e.prior}`
+    `${pad(e.time, 9)}${pad(e.release, 38)}${pad(e.actual, 9)}${e.prior}`
   );
 
   return [header, sep, colHeader, sep, ...rows].join('\n');
