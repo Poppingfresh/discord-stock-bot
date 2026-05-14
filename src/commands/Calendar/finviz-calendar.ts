@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-const CALENDAR_PATH = '/home/discord-stock-bot/data/calendar.json';
+const CALENDAR_PATH = '/home/bot/discord-stock-bot/data/calendar.json';
 
 const DAY_ARGS: Record<string, string> = {
   mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri',
