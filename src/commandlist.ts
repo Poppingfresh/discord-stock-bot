@@ -27,6 +27,7 @@ import { VolConeCommand, PairsCommand, CoTCommand, VixBinsCommand, VixReturnsCom
 import { VixCurveCommand, MomoDashCommand, MaxLossCommand, VRPCommand } from './commands/market_dashboard';
 import { ExtendHoursCommand } from './commands/ExtendHours';
 import { TickerTrackerCommand } from './commands/TickerTracker';
+import { CalendarCommand } from './commands/Calendar';
 
 export const commandList: ICommand[] = [
   FuturesCommand,
@@ -65,4 +66,5 @@ export const commandList: ICommand[] = [
   HeatMap, DumpItCommand, PumpItCommand, LateCommand, MalakaCommand,
   JowsCommand, PoorCommand,
   TickerTrackerCommand,
+  CalendarCommand,
 ];
