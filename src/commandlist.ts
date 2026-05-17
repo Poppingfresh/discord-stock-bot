@@ -28,6 +28,7 @@ import { VixCurveCommand, MomoDashCommand, MaxLossCommand, VRPCommand } from './
 import { ExtendHoursCommand } from './commands/ExtendHours';
 import { TickerTrackerCommand } from './commands/TickerTracker';
 import { CalendarCommand } from './commands/Calendar';
+import { EarningsCommand } from './commands/Earnings';
 
 export const commandList: ICommand[] = [
   FuturesCommand,
@@ -67,4 +68,5 @@ export const commandList: ICommand[] = [
   JowsCommand, PoorCommand,
   TickerTrackerCommand,
   CalendarCommand,
+  EarningsCommand,
 ];
