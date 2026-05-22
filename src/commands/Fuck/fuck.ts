@@ -494,7 +494,7 @@ export const HurfCommand: ICommand = {
       if (Math.random() < claudeChance) try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
-        const response = await fetch('http://137.184.18.74:3422/hurf', {
+        const response = await fetch('http://localhost:3456/hurf', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ keyword: arg }),
