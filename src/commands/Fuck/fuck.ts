@@ -490,7 +490,7 @@ export const HurfCommand: ICommand = {
       const termFound = matches.length > 0;
 
       // If term found: 50/50 Claude vs static. If not found: 80% Claude, 20% static.
-      const claudeChance = termFound ? 0.5 : 0.8;
+      const claudeChance = termFound ? 0.25 : 0.5;
       if (Math.random() < claudeChance) try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
@@ -503,7 +503,10 @@ export const HurfCommand: ICommand = {
         clearTimeout(timeout);
         if (response.ok) {
           const data = await response.json() as { phrase: string };
-          line1 = data.phrase;
+          const refusalPattern = /^(i'?m?\s*(sorry|unable|can't|cannot)|i apologize)/i;
+          if (!refusalPattern.test(data.phrase.trim())) {
+            line1 = data.phrase;
+          }
         }
       } catch (err) {
         console.error('HurfBot API unavailable, falling back to static file:', err);
