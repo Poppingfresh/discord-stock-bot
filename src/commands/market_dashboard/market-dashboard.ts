@@ -479,7 +479,8 @@ export const VixCurveCommand: ICommand = {
   name: 'Vix Curve',
   helpDescription: 'Generates VIX futures curve',
   showInHelp: true,
-  trigger: (msg: Message) => (msg.content.startsWith('!vix')),
+  // word boundary after "!vix" so !vixbin/!vixnext/!vixmodels don't also fire this
+  trigger: (msg: Message) => /^!vix(\s|$)/.test(msg.content),
   command: async (message: Message, services: any) => {
     try {
       const res = await got(`${process.env.MARKET_DASHBOARD_URI}/vixCurveMain`, {

@@ -26,6 +26,11 @@ describe('crypto', () => {
   }));
 
   it('should send message', async () => {
+    // The command records usage in SQLite; mock the tracker so the test
+    // doesn't write to a real DB (otherwise the missing author.id throws a
+    // NOT NULL constraint error). Mirrors the pattern in stocks.spec.ts.
+    spyOn(TickerTracker, 'postTicker');
+    spyOn(TickerTracker, 'lastTicker');
     const spy = jasmine.createSpyObj<Message>('message', ['content', 'channel', 'author']);
     spy.content = '$.btc';
     const msgSpy = jasmine.createSpy();

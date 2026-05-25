@@ -24,8 +24,13 @@ interface TickerCount {
   count: number;
 }
 
+interface LastMessageEntry {
+  callerMessageId: string;
+  imageMessageId: string;
+}
+
 export class TickerTracker {
-  private static LastMessage = new Map<string, { callerMessageId: string; imageMessageId: string }>();
+  private static LastMessage = new Map<string, LastMessageEntry>();
 
   static readonly DateChars = new Set(['d', 'w', 'm']);
 
@@ -45,7 +50,7 @@ export class TickerTracker {
     const cutoff = Date.now() - NINETY_DAYS_MS;
     db.prepare('DELETE FROM ticker_history WHERE ts < ?').run(cutoff);
     db.prepare('INSERT INTO ticker_history (ticker, userId, username, ts) VALUES (?, ?, ?, ?)').run(
-      ticker.toLowerCase(), userId, username, Date.now()
+      ticker.toLowerCase(), userId, username, Date.now(),
     );
   }
 
@@ -59,7 +64,7 @@ export class TickerTracker {
     const q = query.toLowerCase();
     return db
       .prepare(
-        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE userId = ? OR LOWER(username) = ? GROUP BY ticker ORDER BY count DESC LIMIT ?'
+        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE userId = ? OR LOWER(username) = ? GROUP BY ticker ORDER BY count DESC LIMIT ?',
       )
       .all(query, q, limit) as TickerCount[];
   }
@@ -70,10 +75,10 @@ export class TickerTracker {
       w: 7 * 24 * 60 * 60 * 1000,
       m: 30 * 24 * 60 * 60 * 1000,
     };
-    const cutoff = Date.now() - (periodMs[period] ?? periodMs['d']);
+    const cutoff = Date.now() - (periodMs[period] ?? periodMs.d);
     return db
       .prepare(
-        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE ts >= ? GROUP BY ticker ORDER BY count DESC LIMIT ?'
+        'SELECT ticker AS _id, COUNT(*) AS count FROM ticker_history WHERE ts >= ? GROUP BY ticker ORDER BY count DESC LIMIT ?',
       )
       .all(cutoff, limit) as TickerCount[];
   }
