@@ -1,0 +1,1444 @@
+{
+  "scraped_at": "2026-05-25",
+  "current_week": [
+    {
+      "day": "Mon",
+      "date": "May 25",
+      "events": [
+        {
+          "time": "12:00AM",
+          "release": "Memorial Day",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        }
+      ]
+    },
+    {
+      "day": "Tue",
+      "date": "May 26",
+      "events": [
+        {
+          "time": "8:30AM",
+          "release": "Chicago Fed National Activity Index",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-0.20"
+        },
+        {
+          "time": "9:00AM",
+          "release": "House Price Index",
+          "impact": 1,
+          "period": "Mar",
+          "actual": "-",
+          "expected": "-",
+          "prior": "441.4"
+        },
+        {
+          "time": "9:00AM",
+          "release": "House Price Index MoM",
+          "impact": 1,
+          "period": "Mar",
+          "actual": "-",
+          "expected": "0.1%",
+          "prior": "0%"
+        },
+        {
+          "time": "9:00AM",
+          "release": "House Price Index YoY",
+          "impact": 1,
+          "period": "Mar",
+          "actual": "-",
+          "expected": "-",
+          "prior": "1.7%"
+        },
+        {
+          "time": "9:00AM",
+          "release": "S&P/Case-Shiller Home Price MoM",
+          "impact": 1,
+          "period": "Mar",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.4%"
+        },
+        {
+          "time": "9:00AM",
+          "release": "S&P/Case-Shiller Home Price YoY",
+          "impact": 2,
+          "period": "Mar",
+          "actual": "-",
+          "expected": "1%",
+          "prior": "0.9%"
+        },
+        {
+          "time": "10:00AM",
+          "release": "CB Consumer Confidence",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "92",
+          "prior": "92.8"
+        },
+        {
+          "time": "10:30AM",
+          "release": "Dallas Fed Manufacturing Index",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-2.3"
+        },
+        {
+          "time": "11:30AM",
+          "release": "3-Month Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.600%"
+        },
+        {
+          "time": "11:30AM",
+          "release": "6-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.615%"
+        },
+        {
+          "time": "1:00PM",
+          "release": "2-Year Note Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "1:00PM",
+          "release": "2-Year Note Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.812%"
+        },
+        {
+          "time": "1:00PM",
+          "release": "6-Month Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.615%"
+        },
+        {
+          "time": "1:00PM",
+          "release": "Money Supply",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "$22.69T"
+        }
+      ]
+    },
+    {
+      "day": "Wed",
+      "date": "May 27",
+      "events": [
+        {
+          "time": "4:00AM",
+          "release": "Fed Logan Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA 30-Year Mortgage Rate",
+          "impact": 2,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "6.56%"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Applications",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-2.3%"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Market Index",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "283.5"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Refinance Index",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "920.2"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Purchase Index",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "170.4"
+        },
+        {
+          "time": "8:15AM",
+          "release": "ADP Employment Change Weekly",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "42.25K"
+        },
+        {
+          "time": "8:55AM",
+          "release": "Redbook YoY",
+          "impact": 1,
+          "period": "05/24",
+          "actual": "-",
+          "expected": "-",
+          "prior": "8.1%"
+        },
+        {
+          "time": "9:20AM",
+          "release": "NY Fed Bill Purchases 1 to 4 months",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "$6.576 billion",
+          "prior": "-"
+        },
+        {
+          "time": "10:00AM",
+          "release": "Richmond Fed Manufacturing Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "4",
+          "prior": "3"
+        },
+        {
+          "time": "10:00AM",
+          "release": "Richmond Fed Manufacturing Shipments Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-2"
+        },
+        {
+          "time": "10:00AM",
+          "release": "Richmond Fed Services Revenues Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "9"
+        },
+        {
+          "time": "10:30AM",
+          "release": "Dallas Fed Services Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-9.9"
+        },
+        {
+          "time": "10:30AM",
+          "release": "Dallas Fed Services Revenues Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "4.3"
+        },
+        {
+          "time": "11:30AM",
+          "release": "17-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.590%"
+        },
+        {
+          "time": "11:30AM",
+          "release": "2-Year FRN Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.103%"
+        },
+        {
+          "time": "1:00PM",
+          "release": "5-Year Note Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.955%"
+        },
+        {
+          "time": "3:55PM",
+          "release": "Fed Cook Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "4:30PM",
+          "release": "API Crude Oil Stock Change",
+          "impact": 2,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-9.1M"
+        },
+        {
+          "time": "8:00PM",
+          "release": "Fed Jefferson Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        }
+      ]
+    },
+    {
+      "day": "Thu",
+      "date": "May 28",
+      "events": [
+        {
+          "time": "8:10AM",
+          "release": "Building Permits Final",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "1.442M",
+          "prior": "1.363M"
+        },
+        {
+          "time": "8:10AM",
+          "release": "Building Permits MoM Final",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-11.5%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Continuing Jobless Claims",
+          "impact": 1,
+          "period": "05/16",
+          "actual": "-",
+          "expected": "1780K",
+          "prior": "1782K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Core PCE Price Index MoM",
+          "impact": 3,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.3%",
+          "prior": "0.3%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Core PCE Price Index YoY",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "3.3%",
+          "prior": "3.2%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Core PCE Prices QoQ 2nd Est",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "4.3%",
+          "prior": "2.7%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Corporate Profits QoQ Prel",
+          "impact": 2,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "-",
+          "prior": "5.7%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Durable Goods Orders ex Defense MoM",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-0.3%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Durable Goods Orders Ex Transp MoM",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.5%",
+          "prior": "0.9%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Durable Goods Orders MoM",
+          "impact": 3,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "3.5%",
+          "prior": "0.8%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "GDP Growth Rate QoQ 2nd Est",
+          "impact": 3,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "2.0%",
+          "prior": "0.5%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "GDP Price Index QoQ 2nd Est",
+          "impact": 2,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "4.5%",
+          "prior": "3.7%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "GDP Sales QoQ 2nd Est",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "1.6%",
+          "prior": "0.3%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Initial Jobless Claims",
+          "impact": 2,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "211K",
+          "prior": "209K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Jobless Claims 4-week Average",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "202.5K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Non Defense Goods Orders Ex Air",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.4%",
+          "prior": "3.4%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "PCE Price Index MoM",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.5%",
+          "prior": "0.7%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "PCE Price Index YoY",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "3.8%",
+          "prior": "3.5%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "PCE Prices QoQ 2nd Est",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "4.5%",
+          "prior": "2.9%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Personal Income MoM",
+          "impact": 3,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.4%",
+          "prior": "0.6%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Personal Spending MoM",
+          "impact": 3,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.5%",
+          "prior": "0.9%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Real Consumer Spending QoQ 2nd Est",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "1.6%",
+          "prior": "1.9%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Real Personal Spending MoM",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.2%"
+        },
+        {
+          "time": "8:55AM",
+          "release": "Fed Williams Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:00AM",
+          "release": "New Home Sales",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.67M",
+          "prior": "0.682M"
+        },
+        {
+          "time": "10:00AM",
+          "release": "New Home Sales MoM",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "7.4%"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Natural Gas Stocks Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "101Bcf"
+        },
+        {
+          "time": "11:30AM",
+          "release": "4-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.610%"
+        },
+        {
+          "time": "11:30AM",
+          "release": "8-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.600%"
+        },
+        {
+          "time": "12:00PM",
+          "release": "15-Year Mortgage Rate",
+          "impact": 1,
+          "period": "05/29",
+          "actual": "-",
+          "expected": "-",
+          "prior": "5.85%"
+        },
+        {
+          "time": "12:00PM",
+          "release": "30-Year Mortgage Rate",
+          "impact": 1,
+          "period": "05/29",
+          "actual": "-",
+          "expected": "-",
+          "prior": "6.51%"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Crude Oil Imports Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.003M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Crude Oil Stocks Change",
+          "impact": 2,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-7.864M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Cushing Crude Oil Stocks Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-1.604M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Distillate Fuel Production Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.214M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Distillate Stocks Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.372M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Gasoline Production Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-0.446M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Gasoline Stocks Change",
+          "impact": 2,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-1.548M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Heating Oil Stocks Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.021M"
+        },
+        {
+          "time": "12:00PM",
+          "release": "EIA Refinery Crude Runs Change",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-0.08M"
+        },
+        {
+          "time": "1:00PM",
+          "release": "7-Year Note Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "4.175%"
+        },
+        {
+          "time": "4:30PM",
+          "release": "Fed Balance Sheet",
+          "impact": 1,
+          "period": "05/28",
+          "actual": "-",
+          "expected": "-",
+          "prior": "$6.713T"
+        }
+      ]
+    },
+    {
+      "day": "Fri",
+      "date": "May 29",
+      "events": [
+        {
+          "time": "8:30AM",
+          "release": "Goods Trade Balance Adv",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-$87B",
+          "prior": "-$87.45B"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Retail Inventories Ex Autos MoM Adv",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.4%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Wholesale Inventories MoM Adv",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "0.5%",
+          "prior": "1.3%"
+        },
+        {
+          "time": "9:10AM",
+          "release": "Fed Bowman Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "9:15AM",
+          "release": "Fed Paulson Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "9:45AM",
+          "release": "Chicago PMI",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "49.7",
+          "prior": "49.2"
+        },
+        {
+          "time": "1:00PM",
+          "release": "Baker Hughes Oil Rig Count",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "425"
+        },
+        {
+          "time": "1:00PM",
+          "release": "Baker Hughes Total Rigs Count",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "558"
+        }
+      ]
+    }
+  ],
+  "next_week": [
+    {
+      "day": "Mon",
+      "date": "Jun 1",
+      "events": [
+        {
+          "time": "10:00AM",
+          "release": "Construction Spending MoM",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.6%"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Manufacturing Employment",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "46.4"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Manufacturing New Orders",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "54.1"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Manufacturing PMI",
+          "impact": 3,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "52.7"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Manufacturing Prices",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "84.6"
+        },
+        {
+          "time": "11:30AM",
+          "release": "3-Month Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "11:30AM",
+          "release": "6-Month Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        }
+      ]
+    },
+    {
+      "day": "Tue",
+      "date": "Jun 2",
+      "events": [
+        {
+          "time": "6:00AM",
+          "release": "LMI Logistics Managers Index",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "69.9"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Fed Hammack Speech",
+          "impact": 2,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "8:55AM",
+          "release": "Redbook YoY",
+          "impact": 1,
+          "period": "05/31",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:00AM",
+          "release": "JOLTs Job Openings",
+          "impact": 3,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "6.866M"
+        },
+        {
+          "time": "10:00AM",
+          "release": "JOLTs Job Quits",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.171M"
+        },
+        {
+          "time": "10:10AM",
+          "release": "RCM/TIPP Economic Optimism Index",
+          "impact": 1,
+          "period": "Jun",
+          "actual": "-",
+          "expected": "-",
+          "prior": "42.6"
+        },
+        {
+          "time": "11:30AM",
+          "release": "6-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "4:30PM",
+          "release": "API Crude Oil Stock Change",
+          "impact": 2,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        }
+      ]
+    },
+    {
+      "day": "Wed",
+      "date": "Jun 3",
+      "events": [
+        {
+          "time": "7:00AM",
+          "release": "MBA 30-Year Mortgage Rate",
+          "impact": 2,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Applications",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Market Index",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Mortgage Refinance Index",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "7:00AM",
+          "release": "MBA Purchase Index",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "8:15AM",
+          "release": "ADP Employment Change",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "109K"
+        },
+        {
+          "time": "10:00AM",
+          "release": "Factory Orders ex Transportation",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "1.6%"
+        },
+        {
+          "time": "10:00AM",
+          "release": "Factory Orders MoM",
+          "impact": 2,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "1.5%"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Services Business Activity",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "55.9"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Services Employment",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "48.0"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Services New Orders",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "53.5"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Services PMI",
+          "impact": 3,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "53.6"
+        },
+        {
+          "time": "10:00AM",
+          "release": "ISM Services Prices",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "70.7"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Crude Oil Imports Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Crude Oil Stocks Change",
+          "impact": 2,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Cushing Crude Oil Stocks Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Distillate Fuel Production Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Distillate Stocks Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Gasoline Production Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Gasoline Stocks Change",
+          "impact": 2,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Heating Oil Stocks Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Refinery Crude Runs Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "11:30AM",
+          "release": "17-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "2:00PM",
+          "release": "Fed Beige Book",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "2:00PM",
+          "release": "Total Vehicle Sales",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "15.9M"
+        }
+      ]
+    },
+    {
+      "day": "Thu",
+      "date": "Jun 4",
+      "events": [
+        {
+          "time": "7:30AM",
+          "release": "Challenger Job Cuts",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "83.387K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Continuing Jobless Claims",
+          "impact": 1,
+          "period": "05/23",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Initial Jobless Claims",
+          "impact": 2,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Jobless Claims 4-week Average",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Nonfarm Productivity QoQ Final",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "0.8%",
+          "prior": "1.6%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Unit Labour Costs QoQ Final",
+          "impact": 1,
+          "period": "Q1",
+          "actual": "-",
+          "expected": "-",
+          "prior": "4.4%"
+        },
+        {
+          "time": "9:20AM",
+          "release": "NY Fed Bill Purchases 1 to 4 months",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "$6.576 billion",
+          "prior": "-"
+        },
+        {
+          "time": "10:30AM",
+          "release": "EIA Natural Gas Stocks Change",
+          "impact": 1,
+          "period": "05/30",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "11:30AM",
+          "release": "4-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "11:30AM",
+          "release": "8-Week Bill Auction",
+          "impact": 1,
+          "period": "-",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "12:00PM",
+          "release": "15-Year Mortgage Rate",
+          "impact": 1,
+          "period": "06/05",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "12:00PM",
+          "release": "30-Year Mortgage Rate",
+          "impact": 1,
+          "period": "06/05",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "4:30PM",
+          "release": "Fed Balance Sheet",
+          "impact": 1,
+          "period": "06/04",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        }
+      ]
+    },
+    {
+      "day": "Fri",
+      "date": "Jun 5",
+      "events": [
+        {
+          "time": "8:30AM",
+          "release": "Average Hourly Earnings MoM",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "0.2%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Average Hourly Earnings YoY",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "3.6%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Average Weekly Hours",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "34.3"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Government Payrolls",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-8K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Manufacturing Payrolls",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-2K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Non Farm Payrolls",
+          "impact": 3,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "115K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Nonfarm Payrolls Private",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "123K"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Participation Rate",
+          "impact": 2,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "61.8%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "U-6 Unemployment Rate",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "8.2%"
+        },
+        {
+          "time": "8:30AM",
+          "release": "Unemployment Rate",
+          "impact": 3,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "4.3%"
+        },
+        {
+          "time": "9:00AM",
+          "release": "Used Car Prices MoM",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-1.6%"
+        },
+        {
+          "time": "9:00AM",
+          "release": "Used Car Prices YoY",
+          "impact": 1,
+          "period": "May",
+          "actual": "-",
+          "expected": "-",
+          "prior": "1.8%"
+        },
+        {
+          "time": "1:00PM",
+          "release": "Baker Hughes Oil Rig Count",
+          "impact": 1,
+          "period": "06/06",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "1:00PM",
+          "release": "Baker Hughes Total Rigs Count",
+          "impact": 1,
+          "period": "06/06",
+          "actual": "-",
+          "expected": "-",
+          "prior": "-"
+        },
+        {
+          "time": "3:00PM",
+          "release": "Consumer Credit Change",
+          "impact": 1,
+          "period": "Apr",
+          "actual": "-",
+          "expected": "-",
+          "prior": "$24.86B"
+        }
+      ]
+    }
+  ]
+}
