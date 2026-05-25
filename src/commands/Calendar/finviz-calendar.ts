@@ -27,7 +27,6 @@ function buildWeekendEvents(): { time: string; release: string; impact: number }
 
   if (pool.length === 0) return [];
 
-  // Fisher-Yates shuffle and take first 6
   const shuffled = [...pool];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -56,7 +55,7 @@ function formatDay(day: { day: string; date: string; events: any[] }): string {
   return [header, sep, colHeader, sep, ...rows].join('\n');
 }
 
-export function getCalendarBlock(dayArg?: string): { title: string; block: string } | { error: string } {
+export function getCalendarBlock(dayArg?: string, isNext = false): { title: string; block: string } | { error: string } {
   let targetDay: string;
   if (dayArg && DAY_ARGS[dayArg.toLowerCase()]) {
     targetDay = DAY_ARGS[dayArg.toLowerCase()];
@@ -78,13 +77,21 @@ export function getCalendarBlock(dayArg?: string): { title: string; block: strin
 
   const data = JSON.parse(fs.readFileSync(CALENDAR_PATH, 'utf-8'));
 
-  const day = data.days.find((d: any) => d.day === targetDay);
-  if (!day) {
-    return { error: `No data for ${targetDay}. The calendar may not include that day this week.` };
+  const weekKey = isNext ? 'next_week' : 'current_week';
+  const week: any[] | undefined = data[weekKey] ?? data['days'];
+
+  if (!week) {
+    return { error: isNext ? 'Next week\'s calendar is not available yet.' : 'Calendar data is missing.' };
   }
 
+  const day = week.find((d: any) => d.day === targetDay);
+  if (!day) {
+    return { error: `No data for ${targetDay}${isNext ? ' next week' : ''}. The calendar may not include that day.` };
+  }
+
+  const weekLabel = isNext ? ' (Next Week)' : '';
   return {
-    title: `Economic Calendar — ${day.day} ${day.date}`,
+    title: `Economic Calendar — ${day.day} ${day.date}${weekLabel}`,
     block: '```\n' + formatDay(day) + '\n```',
   };
 }

@@ -4,12 +4,23 @@ import { getCalendarBlock } from './finviz-calendar';
 
 export const CalendarCommand: ICommand = {
   name: 'Calendar',
-  helpDescription: '!econ [day] — economic calendar for today or a specific day (mon/tue/wed/thu/fri)',
+  helpDescription: '!econ [day] [next] — economic calendar for today or a specific day (mon–fri); add "next" for next week',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!econ'),
   command: async (message: Message) => {
-    const dayArg = message.content.split(' ')[1];
-    const result = getCalendarBlock(dayArg);
+    const parts = message.content.trim().split(/\s+/).slice(1); // drop '!econ'
+
+    let isNext = false;
+    let dayArg: string | undefined;
+
+    if (parts.includes('next')) {
+      isNext = true;
+      dayArg = parts.find((p) => p !== 'next');
+    } else {
+      dayArg = parts[0];
+    }
+
+    const result = getCalendarBlock(dayArg, isNext);
 
     if ('error' in result) {
       await message.channel.send(result.error);
