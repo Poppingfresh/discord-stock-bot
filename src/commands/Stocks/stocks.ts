@@ -81,6 +81,7 @@ export const StocksCommand: ICommand = {
             "./src/commands/Fuck/images/cum2.png",
             "./src/commands/Fuck/images/cum3.png",
             "./src/commands/Fuck/images/cum4.png",
+            "./src/commands/Fuck/images/cum5.png",
             ];
             await message.channel.send({ files : [images[Math.floor(Math.random() * images.length)]] });
             return Promise.resolve();

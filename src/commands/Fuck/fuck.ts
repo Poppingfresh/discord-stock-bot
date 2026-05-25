@@ -135,7 +135,7 @@ export const ManateeCommand: ICommand = {
 			await message.reply("**~MODS~!!!**... Manatee probably");
 			break;
 		case 4:
-			await message.reply({ files : ["./src/commands/Fuck/images/Manatee3.png"] });
+			await message.reply({ files : ["./src/commands/Fuck/images/Manatee4.png"] });
 			break;
 		default:
 			await message.reply({ files : ["./src/commands/Fuck/images/Manatee2.jpg"] });
@@ -329,7 +329,7 @@ export const ZephCommand: ICommand = {
 			await message.reply(line)
 			break;
 		case 3:
-			await message.reply({ files : ["./src/commands/Fuck/images/Zeph3.jpg"] })
+			await message.reply({ files : ["./src/commands/Fuck/images/Zeph4.ppg"] })
 			break;
         case 4:
 			await message.reply({ files : ["./src/commands/Fuck/images/Zeph1.png"] })
@@ -432,6 +432,7 @@ export const JoshCommand: ICommand = {
   		"./src/commands/Fuck/images/Josh7.png",
 		"./src/commands/Fuck/images/Josh8.png",
         "./src/commands/Fuck/images/Josh9.png",
+        "./src/commands/Fuck/images/Josh10.png",
   		];
 
 	await message.reply({ files : [images[Math.floor(Math.random() * images.length)]] });
