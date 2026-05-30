@@ -275,7 +275,7 @@ export const NewLowCommand: ICommand = {
         } else if (i_rand >= 20 && i_rand < 40) {
             await message.reply({ files : ["./src/commands/Fuck/images/newLows2.gif"] })
         } else if (i_rand >= 40 && i_rand < 60) {
-            await message.reply({ files : ["./src/commands/Fuck/images/newLows3.gif"] })
+            await message.reply({ files : ["./src/commands/Fuck/images/newlows3.gif"] })
         } else if (i_rand >= 60 && i_rand < 80) {
             await message.reply({ files : ["./src/commands/Fuck/images/newLows4.gif"] })
         }
