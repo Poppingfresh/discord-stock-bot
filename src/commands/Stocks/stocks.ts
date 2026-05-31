@@ -149,6 +149,9 @@ export const StocksCommand: ICommand = {
                 );
               TickerTracker.lastTicker(message.author.id, message.id, (sentMessage as Message).id);
               TickerTracker.postTicker(ticker, message.author.id, message.member?.displayName ?? message.author.username);
+              if (ticker === 'dia' && Math.random() < 0.2) {
+                await message.channel.send({ files: ["./src/commands/Fuck/images/djia50k.gif"] });
+              }
             } else {
               const fs = require('fs')
               const fileContent = fs.readFileSync('./src/commands/Stocks/invalidMsg.txt', 'utf-8');
