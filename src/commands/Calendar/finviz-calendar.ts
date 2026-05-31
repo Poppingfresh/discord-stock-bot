@@ -46,7 +46,7 @@ const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 function formatDay(day: { day: string; date: string; events: any[] }): string {
   const header = `${day.day} ${day.date}  (${day.events.length} events)`;
   const sep = '─'.repeat(30);
-  const colHeader = `${'Time'.padEnd(8)}${'Release'.padEnd(36)}I`;
+  const colHeader = `${'Time'.padEnd(8)}${'Release'.padEnd(30)}I`;
 
   const rows = day.events.map((e) =>
     `${pad(e.time, 8)}${pad(e.release, 36)}${IMPACT[e.impact] ?? '-'}`
