@@ -4,7 +4,7 @@ const EARNINGS_PATH = '/home/bot/discord-stock-bot/data/earnings.json';
 
 function formatEarnings(entries: any[]): string {
   const header = `*top ${entries.length} by market cap*`;
-  const rows = entries.map((e) => `**${e.ticker}** ${e.name} · ${e.time}`);
+  const rows = entries.map((e) => `**${e.ticker}** | ${e.name} | ${e.time}`);
   return [header, ...rows].join('\n');
 }
 

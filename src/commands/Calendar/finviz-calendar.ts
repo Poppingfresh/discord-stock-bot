@@ -44,7 +44,7 @@ function buildWeekendEvents(): { time: string; release: string; impact: number }
 function formatDay(day: { day: string; date: string; events: any[] }): string {
   const header = `*${day.events.length} events*`;
   const rows = day.events.map((e) =>
-    `${IMPACT[e.impact] ?? '—'} **${e.time}** ${e.release}`
+    `${IMPACT[e.impact] ?? '—'} | ${e.time} | ${e.release}`
   );
   return [header, ...rows].join('\n');
 }
