@@ -44,7 +44,7 @@ function buildWeekendEvents(): { time: string; release: string; impact: number }
 const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
 function formatDay(day: { day: string; date: string; events: any[] }): string {
-  const sep = '─'.repeat(40);
+  const sep = '-'.repeat(40);
   const colHeader = `I ${'Time'.padEnd(7)} Release`;
   const rows = day.events.map((e) =>
     `${IMPACT[e.impact] ?? '-'} ${pad(e.time, 7)} ${pad(e.release, 30)}`

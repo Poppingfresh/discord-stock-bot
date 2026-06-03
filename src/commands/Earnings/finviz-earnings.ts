@@ -5,7 +5,7 @@ const EARNINGS_PATH = '/home/bot/discord-stock-bot/data/earnings.json';
 const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
 function formatEarnings(entries: any[]): string {
-  const sep = '─'.repeat(40);
+  const sep = '-'.repeat(40);
   const colHeader = `${'Ticker'.padEnd(7)}${'Company'.padEnd(29)}When`;
   const rows = entries.map((e) =>
     `${pad(e.ticker, 6)} ${pad(e.name, 28)} ${e.time}`
