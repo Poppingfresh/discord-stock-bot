@@ -35,7 +35,7 @@ export const CalendarCommand: ICommand = {
         },
         color: 3447003,
         title: result.title,
-        description: result.block,
+        description: result.description,
         footer: { text: 'Source: Finviz Economic Calendar' },
       }],
     });

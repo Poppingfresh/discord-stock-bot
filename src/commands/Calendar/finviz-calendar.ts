@@ -12,7 +12,7 @@ const TODAY_MAP: Record<number, string> = {
   0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat',
 };
 
-const IMPACT: Record<number, string> = { 3: 'H', 2: 'M', 1: 'L', 0: '-' };
+const IMPACT: Record<number, string> = { 3: '🔴', 2: '🟡', 1: '⚪', 0: '—' };
 
 const WEEKEND_TIMES = ['9:00AM', '10:30AM', '12:00PM', '1:30PM', '3:00PM', '4:30PM', '6:00PM', '8:00PM'];
 const WEEKEND_IMPACTS = [3, 3, 2, 2, 2, 1];
@@ -41,21 +41,15 @@ function buildWeekendEvents(): { time: string; release: string; impact: number }
   }));
 }
 
-const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
-
 function formatDay(day: { day: string; date: string; events: any[] }): string {
-  const header = `${day.day} ${day.date}  (${day.events.length} events)`;
-  const sep = '─'.repeat(36);
-  const colHeader = `${'Time'.padEnd(8)}${'Release'.padEnd(48)}I`;
-
+  const header = `*${day.events.length} events*`;
   const rows = day.events.map((e) =>
-    `${pad(e.time, 8)}${pad(e.release, 46)}${IMPACT[e.impact] ?? '-'}`
+    `${IMPACT[e.impact] ?? '—'} **${e.time}** ${e.release}`
   );
-
-  return [header, sep, colHeader, sep, ...rows].join('\n');
+  return [header, ...rows].join('\n');
 }
 
-export function getCalendarBlock(dayArg?: string, isNext = false): { title: string; block: string } | { error: string } {
+export function getCalendarBlock(dayArg?: string, isNext = false): { title: string; description: string } | { error: string } {
   let targetDay: string;
   if (dayArg && DAY_ARGS[dayArg.toLowerCase()]) {
     targetDay = DAY_ARGS[dayArg.toLowerCase()];
@@ -67,7 +61,7 @@ export function getCalendarBlock(dayArg?: string, isNext = false): { title: stri
     const events = buildWeekendEvents();
     return {
       title: `Economic Calendar — ${targetDay} (Markets Closed)`,
-      block: '```\n' + formatDay({ day: targetDay, date: 'Market Closed', events }) + '\n```',
+      description: formatDay({ day: targetDay, date: 'Market Closed', events }),
     };
   }
 
@@ -92,6 +86,6 @@ export function getCalendarBlock(dayArg?: string, isNext = false): { title: stri
   const weekLabel = isNext ? ' (Next Week)' : '';
   return {
     title: `Economic Calendar — ${day.day} ${day.date}${weekLabel}`,
-    block: '```\n' + formatDay(day) + '\n```',
+    description: formatDay(day),
   };
 }
