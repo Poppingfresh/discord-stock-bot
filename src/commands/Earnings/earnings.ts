@@ -24,7 +24,7 @@ export const EarningsCommand: ICommand = {
         },
         color:       3447003,
         title:       result.title,
-        description: result.block,
+        description: result.description,
         footer:      { text: 'Sorted by market cap · Source: Finviz' },
       }],
     });

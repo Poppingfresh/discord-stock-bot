@@ -2,18 +2,10 @@ import * as fs from 'fs';
 
 const EARNINGS_PATH = '/home/bot/discord-stock-bot/data/earnings.json';
 
-const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
-
-function formatEarnings(dateStr: string, entries: any[]): string {
-  const header    = `${dateStr}  (top ${entries.length} by mkt cap)`;
-  const sep       = '─'.repeat(40);
-  const colHeader = `${'Ticker'.padEnd(8)}${'Company'.padEnd(26)}When`;
-
-  const rows = entries.map((e) =>
-    `${pad(e.ticker, 8)}${pad(e.name, 26)}${e.time}`
-  );
-
-  return [header, sep, colHeader, sep, ...rows].join('\n');
+function formatEarnings(entries: any[]): string {
+  const header = `*top ${entries.length} by market cap*`;
+  const rows = entries.map((e) => `**${e.ticker}** ${e.name} · ${e.time}`);
+  return [header, ...rows].join('\n');
 }
 
 function parseDate(arg: string): string | null {
@@ -26,7 +18,7 @@ function parseDate(arg: string): string | null {
   return null;
 }
 
-export function getEarningsBlock(dateArg?: string): { title: string; block: string } | { error: string } {
+export function getEarningsBlock(dateArg?: string): { title: string; description: string } | { error: string } {
   if (!fs.existsSync(EARNINGS_PATH)) {
     return { error: 'Earnings data not yet scraped. Run `scrapeEarnings.py` first.' };
   }
@@ -55,6 +47,6 @@ export function getEarningsBlock(dateArg?: string): { title: string; block: stri
 
   return {
     title: `Earnings Calendar — ${targetDate}`,
-    block: '```\n' + formatEarnings(targetDate, dayData.entries) + '\n```',
+    description: formatEarnings(dayData.entries),
   };
 }
