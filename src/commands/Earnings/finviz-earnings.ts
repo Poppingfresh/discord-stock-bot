@@ -8,7 +8,7 @@ function formatEarnings(entries: any[]): string {
   const sep = '-'.repeat(40);
   const colHeader = `${'Ticker'.padEnd(7)}${'Company'.padEnd(29)}When`;
   const rows = entries.map((e) =>
-    `${pad(e.ticker, 6)} ${pad(e.name, 28)} ${e.time}`
+    `${pad(e.ticker, 6)} ${pad(e.name, 50)} ${e.time}`
   );
   return [sep, colHeader, sep, ...rows].join('\n');
 }

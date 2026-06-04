@@ -47,7 +47,7 @@ function formatDay(day: { day: string; date: string; events: any[] }): string {
   const sep = '-'.repeat(40);
   const colHeader = `I ${'Time'.padEnd(7)} Release`;
   const rows = day.events.map((e) =>
-    `${IMPACT[e.impact] ?? '-'} ${pad(e.time, 7)} ${pad(e.release, 30)}`
+    `${IMPACT[e.impact] ?? '-'} ${pad(e.time, 7)} ${pad(e.release, 50)}`
   );
   return [sep, colHeader, sep, ...rows].join('\n');
 }
