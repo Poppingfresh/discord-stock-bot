@@ -6,9 +6,9 @@ const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
 function formatEarnings(entries: any[]): string {
   const sep = '-'.repeat(40);
-  const colHeader = `${'Ticker'.padEnd(7)}${'Company'.padEnd(29)}When`;
+  const colHeader = `${'W'.padEnd(4)}${'Ticker'.padEnd(8)}Company`;
   const rows = entries.map((e) =>
-    `${pad(e.ticker, 6)} ${pad(e.name, 50)} ${e.time}`
+    `${pad(e.time, 3)} ${pad(e.ticker, 6)}  ${e.name}`
   );
   return [sep, colHeader, sep, ...rows].join('\n');
 }
