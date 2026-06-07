@@ -215,9 +215,9 @@ export const HeatMap: ICommand = {
   trigger: (msg: Message) => msg.content.startsWith('!hm'),
   command: async (message: Message) => {
     try {
-      const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/hm.png`, { retry: { limit: 2 }, timeout: { request: 15000 } });
+      const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
       await new Promise(resolve => setTimeout(resolve, 250));
-      await message.channel.send({files: [{attachment: image.rawBody, name: 'heatmap.png'}]});
+      await message.channel.send({files: [{attachment: `${cotRepoPath}/Figs/hm.png`, name: 'heatmap.png'}]});
     } catch (e) {
       console.error('HeatMap fetch error:', e);
     }

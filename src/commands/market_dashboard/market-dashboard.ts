@@ -520,11 +520,10 @@ export const MomoDashCommand: ICommand = {
         },
       );
 	  
-	const image2 = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/stockbee_tab.png`);
-	await message.channel.send({files: [image2.rawBody]});
-    
-  const image3 = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/market_tab3.png`);
-	await message.channel.send({files: [image3.rawBody]});
+	const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
+	await message.channel.send({files: [`${cotRepoPath}/stockbee_tab.png`]});
+
+  await message.channel.send({files: [`${cotRepoPath}/market_tab3.png`]});
   
   } catch(e)
       {
@@ -577,10 +576,9 @@ export const VRPCommand: ICommand = {
   trigger: (msg: Message) => msg.content.startsWith('!vrp'),
   command: async (message: Message, services: any) => {
     try {
-      const image = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/3_1_IV_contango.png`);
-      await message.channel.send({files: [image.rawBody]});
-      const image2 = await got(`https://raw.githubusercontent.com/Poppingfresh/CoT_Repo/refs/heads/main/Figs/VRPremia.png`);
-      await message.channel.send({files: [image2.rawBody]});
+      const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
+      await message.channel.send({files: [`${cotRepoPath}/Figs/3_1_IV_contango.png`]});
+      await message.channel.send({files: [`${cotRepoPath}/Figs/VRPremia.png`]});
     } catch (e) {
       console.error('VRPCommand fetch error:', e);
     }
