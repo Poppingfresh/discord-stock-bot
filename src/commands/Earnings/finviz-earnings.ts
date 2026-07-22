@@ -23,6 +23,12 @@ function parseDate(arg: string): string | null {
   return null;
 }
 
+// True when the argument looks like a calendar date (YYYY-MM-DD or MM-DD).
+// Anything else is treated as a ticker symbol by the !earnings command.
+export function isDateArg(arg: string): boolean {
+  return parseDate(arg) !== null;
+}
+
 export function getEarningsBlock(dateArg?: string): { title: string; description: string } | { error: string } {
   if (!fs.existsSync(EARNINGS_PATH)) {
     return { error: 'Earnings data not yet scraped. Run `scrapeEarnings.py` first.' };
