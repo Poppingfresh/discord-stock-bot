@@ -4,10 +4,20 @@ const EARNINGS_PATH = '/home/bot/discord-stock-bot/data/earnings.json';
 
 const pad = (s: string, n: number) => s.substring(0, n).padEnd(n);
 
+function dedupeByTicker(entries: any[]): any[] {
+  const seen = new Set<string>();
+  return entries.filter((e) => {
+    const key = String(e.ticker ?? '').toUpperCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function formatEarnings(entries: any[]): string {
   const sep = '-'.repeat(40);
   const colHeader = `${'W'.padEnd(4)}${'Ticker'.padEnd(8)}Company`;
-  const rows = entries.map((e) =>
+  const rows = dedupeByTicker(entries).map((e) =>
     `${pad(e.time, 3)} ${pad(e.ticker, 6)}  ${e.name}`
   );
   return [sep, colHeader, sep, ...rows].join('\n');
