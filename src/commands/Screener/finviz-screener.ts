@@ -54,7 +54,13 @@ export const getFinvizScreenWholeTable = async (
     const tableRow: { [key: string]: string } = {};
     $(tds).each((i, tdElement) => {
       const key = tableHeaders[i];
-      const value = $(tdElement).text().trim();
+      const $td = $(tdElement);
+      // Finviz added a company logo to the ticker cell: an <a class="company-ticker">
+      // wrapping an <img> plus a first-letter fallback <span> (e.g. <span>S</span>).
+      // Its text is concatenated ahead of the real ticker anchor by .text(), which
+      // duplicates the first letter (STAK -> "S" + "STAK" = "SSTAK"). Strip it out.
+      $td.find('a.company-ticker').remove();
+      const value = $td.text().trim();
       if (key) {
         tableRow[key] = value;
       }
