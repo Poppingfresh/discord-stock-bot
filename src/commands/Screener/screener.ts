@@ -78,7 +78,7 @@ export const WinnersCommand: ICommand = {
     if (i_rand < 90) {
         let url;
         if (cap == 'large') {
-            url = 'https://finviz.com/screener.ashx?v=111&s=ta_topgainers&f=cap_large';
+            url = 'https://finviz.com/screener.ashx?v=111&s=ta_topgainers&f=cap_largeover';
         } else if (cap == 'mid') {
             url = 'https://finviz.com/screener.ashx?v=111&s=ta_topgainers&f=cap_mid';
         } else {
@@ -129,7 +129,7 @@ export const LosersCommand: ICommand = {
         if (cap == 'large') {
             url = 'https://finviz.com/screener.ashx?v=111&s=ta_toplosers&f=cap_largeover';
         } else if (cap == 'mid') {
-            url = 'https://finviz.com/screener.ashx?v=111&s=ta_toplosers&f=cap_midover';
+            url = 'https://finviz.com/screener.ashx?v=111&s=ta_toplosers&f=cap_mid';
         } else {
             url = 'https://finviz.com/screener.ashx?v=110&s=ta_toplosers';
         }
@@ -194,7 +194,7 @@ const formatTradingViewFields = (stocks: TradingViewStock[], session: 'premarket
 
 export const PreMarketCommand: ICommand = {
   name: 'PreMarket',
-  helpDescription: '!premarket (all | mid | large) shows premarket gainers, losers, and most active stocks',
+  helpDescription: '!premarket (all | mid | large) shows premarket gainers and losers',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!premarket'),
   command: async (message: Message) => {
@@ -214,9 +214,9 @@ export const PreMarketCommand: ICommand = {
         ...formatTradingViewFields(data.gainers, 'premarket', 5),
         {
           name: '\u200b',
-          value: '🤜🔴🤛 **Gappers**',
+          value: '📉 **Top Losers**',
         },
-        ...formatTradingViewFields(data.gappers || [], 'premarket', 5, true),
+        ...formatTradingViewFields(data.losers, 'premarket', 5),
       ];
 
       message.channel.send({
