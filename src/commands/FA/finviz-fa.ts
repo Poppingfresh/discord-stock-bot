@@ -19,7 +19,10 @@ export interface fa_num {
 }
 
 export const getCompanyFA = async (ticker: string): Promise<fa_num> => {
-  const result = await got(`https://finviz.com/quote.ashx?t=${encodeURIComponent(ticker)}`);
+  // Finviz rejects got's default User-Agent; same header !info uses.
+  const result = await got(`https://finviz.com/quote.ashx?t=${encodeURIComponent(ticker)}`, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; discord-stock-bot/1.0)' },
+  });
   const $ = cheerio.load(result.body);
 
   // Build data map in a single pass
