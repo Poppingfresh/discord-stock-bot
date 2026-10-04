@@ -82,23 +82,49 @@ export interface TickerInfo {
 
 export const getSymbolInfo = async (ticker: string): Promise<TickerInfo> => got(`https://stockcharts.com/j-sum/sum?cmd=symsum&symbol=${encodeURIComponent(ticker)}`).json();
 
-export const getCompanyInfo = async (ticker: string): Promise<string> => {
-  const result = await got(`https://finviz.com/quote.ashx?t=${encodeURIComponent(ticker)}`);
-  const $ = cheerio.load(result.body);
-  return $('.quote_profile-bio').text();
+// Finviz rejects got's default User-Agent; same header the screener uses.
+const getQuotePage = async (ticker: string): Promise<cheerio.CheerioAPI> => {
+  const result = await got(`https://finviz.com/quote.ashx?t=${encodeURIComponent(ticker)}`, {
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; discord-stock-bot/1.0)' },
+  });
+  return cheerio.load(result.body);
 };
 
+export const getCompanyInfo = async (ticker: string): Promise<string> => {
+  const $ = await getQuotePage(ticker);
+  const bio = $('[class*="profile-bio"], [class*="profile_bio"]').first().text().trim();
+  if (bio) return bio;
+  // Layout changed and the bio class is gone: the profile paragraph is the
+  // longest block of plain text on the quote page.
+  let longest = '';
+  $('div, p, td').each((_, el) => {
+    if ($(el).children().length > 0) return;
+    const text = $(el).text().trim();
+    if (text.length > longest.length) longest = text;
+  });
+  return longest.length > 150 ? longest : '';
+};
+
+// Matches "Today 02:00AM", "Oct-02-26 10:01PM" and bare "06:01PM".
+// A bare time belongs to the same day as the row above it.
+const NEWS_TIME = /(Today|[A-Z][a-z]{2}-\d{2}-\d{2})?\s*\d{1,2}:\d{2}\s?[AP]M/;
+
 export const getCompanyNews = async (ticker: string): Promise<string[]> => {
-  const result = await got(`https://finviz.com/quote.ashx?t=${encodeURIComponent(ticker)}`);
-  const $ = cheerio.load(result.body);
-  return [($('#news-table#news-table > tbody > tr:nth-child(1) > td:nth-child(1)').text()+'  '+
-            $('#news-table#news-table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.news-link-left > a').text()),
-			($('#news-table#news-table > tbody > tr:nth-child(2) > td:nth-child(1)').text()+'  '+
-			$('#news-table#news-table > tbody > tr:nth-child(2) > td:nth-child(2) > div > div.news-link-left > a').text()),
-            ($('#news-table#news-table > tbody > tr:nth-child(3) > td:nth-child(1)').text()+'  '+
-			$('#news-table#news-table > tbody > tr:nth-child(3) > td:nth-child(2) > div > div.news-link-left > a').text()),
-			($('#news-table#news-table > tbody > tr:nth-child(4) > td:nth-child(1)').text()+'  '+
-			$('#news-table#news-table > tbody > tr:nth-child(4) > td:nth-child(2) > div > div.news-link-left > a').text()),
-			($('#news-table#news-table > tbody > tr:nth-child(5) > td:nth-child(1)').text()+'  '+
-			$('#news-table#news-table > tbody > tr:nth-child(5) > td:nth-child(2) > div > div.news-link-left > a').text())];
+  const $ = await getQuotePage(ticker);
+  let links = $('a.tab-link-news');
+  if (links.length === 0) links = $('#news-table a, [id*="news"] a[href^="http"]');
+
+  const news: string[] = [];
+  links.each((_, a) => {
+    if (news.length >= 5) return false;
+    const headline = $(a).text().trim();
+    if (!headline) return;
+    // Climb to the row holding both the timestamp and the link.
+    let row = $(a).parent();
+    for (let i = 0; i < 5 && row.length && !NEWS_TIME.test(row.text()); i++) row = row.parent();
+    const time = row.text().match(NEWS_TIME)?.[0].trim() ?? '';
+    const line = `${time}  ${headline}`;
+    if (!news.includes(line)) news.push(line);
+  });
+  return news;
 };
