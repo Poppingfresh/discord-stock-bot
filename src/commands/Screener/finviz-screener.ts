@@ -42,9 +42,10 @@ export const getFinvizScreenWholeTable = async (
   const scrapedData: { [key: string]: string }[] = [];
   const tableHeaders: string[] = [];
 
-  // Extract headers dynamically and normalize them
+  // Extract headers dynamically and normalize them.
+  // '%' is stripped because Finviz renamed "Change" to "Change %"; keeps the key 'change'.
   $('table.screener_table thead th').each((_i, thElement) => {
-    const header = $(thElement).text().trim().toLowerCase().replace(/\s+/g, '');
+    const header = $(thElement).text().trim().toLowerCase().replace(/[\s%]+/g, '');
     tableHeaders.push(header);
   });
 
