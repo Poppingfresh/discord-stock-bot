@@ -136,8 +136,14 @@ const getTradingViewData = async (
     );
   }
 
+  // Stocks with no after-hours print return a null postmarket_change and get sorted ahead of
+  // real movers, so restrict each side to the matching sign (gainers > 0, losers < 0)
+  const sessionFilters = marketSession === 'postmarket'
+    ? [{ left: 'postmarket_change', operation: sortOrder === 'desc' ? 'greater' : 'less', right: 0 }]
+    : [];
+
   const payload = {
-    filter: [...baseFilters, ...marketCapFilters],
+    filter: [...baseFilters, ...marketCapFilters, ...sessionFilters],
     options: { lang: 'en' },
     symbols: { query: { types: ['stock'] }, tickers: [] as string[] },
     columns,
