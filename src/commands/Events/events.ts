@@ -14,7 +14,8 @@ export const EventsCommand: ICommand = {
     const table = await getFinvizEventsTable();
     // eslint-disable-next-line no-nested-ternary
     table.sort((a, b) => ((a.impact < b.impact) ? 1 : ((b.impact < a.impact) ? -1 : 0)));
-    const fields = table.map((value) => ({
+    // Discord embeds allow at most 25 fields; table is sorted high-impact first.
+    const fields = table.slice(0, 25).map((value) => ({
       name: value.release,
       value: `${value.date} ${value.time} Impact: ${impact[value.impact]} Expected: ${value.expected} Prior: ${value.prior} Actual: ${value.actual}`,
     }));
