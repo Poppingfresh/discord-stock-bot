@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getSymbolInfo } from './stockcharts-ext';
 
 export const ExtendHoursCommand: ICommand = {
@@ -8,7 +8,7 @@ export const ExtendHoursCommand: ICommand = {
   helpDescription: '!ext aapl',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!ext'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const ticker = message.content.split(' ')[1];
     const price = await getSymbolInfo(ticker);
     if (typeof price.extendedHours == 'undefined') {

@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import NodeCache from 'node-cache';
 import { commandList } from './commandlist';
+import { isSendableMessage } from './icommand';
 
 require('dotenv').config();
 
@@ -56,6 +57,7 @@ client.on('invalidated', () => {
 const cache = new NodeCache();
 
 client.on('messageCreate', (msg) => {
+  if (!isSendableMessage(msg)) return;
   const commands = commandList.filter((command) => command.trigger(msg));
   Promise.all(commands.map(async (command) => {
     await command.command(msg, { cache });

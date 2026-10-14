@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { TickerTracker } from '../../services/tickerTracker';
 
 export const TickerTrackerCommand: ICommand = {
@@ -7,7 +7,7 @@ export const TickerTrackerCommand: ICommand = {
   helpDescription: '!top — top tickers overall  |  !top d/w/m — last 24h/7d/30d  |  !top @user — top for a user',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!top'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const argument = message.content.replace('!top', '').trim();
     let tickers;
     let subtitle: string;

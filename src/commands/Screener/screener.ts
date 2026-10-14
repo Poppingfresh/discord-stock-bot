@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getFinvizScreenWholeTable } from './finviz-screener';
 import { getPreMarketData, getAfterHoursData, TradingViewStock } from './tradingview-scanner';
 
@@ -10,7 +10,7 @@ export const ScreenerCommand: ICommand = {
   helpDescription: '!screener finviz url',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!screener'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const url = message.content.replace('!screener', '').trim();
     const table = await getFinvizScreenWholeTable(url);
     const arrayLength = Math.min(table.length, 5);
@@ -40,7 +40,7 @@ export const BreakoutCommand: ICommand = {
   helpDescription: '!breakout lists stocks breaking out',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!breakout'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const table = await getFinvizScreenWholeTable(breakingOut);
     const arrayLength = Math.min(table.length, 5);
     const fields = table.slice(0, arrayLength).map((value) => ({
@@ -71,7 +71,7 @@ export const WinnersCommand: ICommand = {
   helpDescription: '!winners (all | mid | large) top winners of the day',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!winners'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     if (message.author.bot) return;
     const cap = message.content.split(' ')[1]
     let i_rand =  Math.floor(Math.random() * 100);
@@ -120,7 +120,7 @@ export const LosersCommand: ICommand = {
   helpDescription: '!losers (all | mid | large) top Losers of the day',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!losers'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     if (message.author.bot) return;
     const cap = message.content.split(' ')[1]
     let i_rand =  Math.floor(Math.random() * 100);
@@ -197,7 +197,7 @@ export const PreMarketCommand: ICommand = {
   helpDescription: '!premarket (all | mid | large) shows premarket gainers and losers',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!premarket'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     if (message.author.bot) return;
     
     const cap = message.content.split(' ')[1] as 'large' | 'mid' | 'all';
@@ -244,7 +244,7 @@ export const AfterHoursCommand: ICommand = {
   helpDescription: '!afterhours (all | mid | large) shows after-hours gainers, losers, and most active stocks',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!afterhours'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     if (message.author.bot) return;
     
     const cap = message.content.split(' ')[1] as 'large' | 'mid' | 'all';

@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getFinvizEventsTable } from './finviz-events';
 
 const impact = ['', 'Low', 'Medium', 'High'];
@@ -10,7 +10,7 @@ export const EventsCommand: ICommand = {
   helpDescription: '!events shows a list of market events for the day',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!events'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const table = await getFinvizEventsTable();
     // eslint-disable-next-line no-nested-ternary
     table.sort((a, b) => ((a.impact < b.impact) ? 1 : ((b.impact < a.impact) ? -1 : 0)));

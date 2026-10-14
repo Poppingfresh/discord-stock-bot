@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { extractFromOptions } from '../../common';
 
 export const ForexCommand: ICommand = {
@@ -7,7 +7,7 @@ export const ForexCommand: ICommand = {
   helpDescription: '$usd/jpy w',
   showInHelp: true,
   trigger: (msg: Message) => msg.cleanContent.startsWith('$') && msg.cleanContent.includes('/') && msg.cleanContent.indexOf('/') !== 1,
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const ticker = message.content.toLowerCase().split(' ')[0].substring(1);
     const rawOptions = message.content.toLowerCase().split(ticker)[1].substring(1).split(' ');
     const options = [];

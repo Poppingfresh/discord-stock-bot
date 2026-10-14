@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getSymbolInfo, getCompanyInfo, getCompanyNews } from './stockcharts-info';
 
 export const InfoCommand: ICommand = {
@@ -8,7 +8,7 @@ export const InfoCommand: ICommand = {
   helpDescription: '!info aapl',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!info'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const ticker = message.content.replace('!info', '').trim();
     const info = await getSymbolInfo(ticker);
     const companyInfo = await getCompanyInfo(ticker);

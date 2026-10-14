@@ -1,5 +1,5 @@
 import { AttachmentBuilder, Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import got from 'got';
 
 export const CorrelationCommand: ICommand = {
@@ -7,7 +7,7 @@ export const CorrelationCommand: ICommand = {
   helpDescription: '!corr [days] [tickers]  example: !corr 5 spy,qqq,^vix,btc-usd',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!corr'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let days = "30";
   let tickers = "SPY,QQQ,IWM,TLT,GLD,USO,UUP,^VIX,BTC-USD";
   const args = message.content.toLowerCase().split(' ');
@@ -47,7 +47,7 @@ export const RealizedVolCommand: ICommand = {
   helpDescription: '!rvol [ticker]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!rvol'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let ticker = message.content.toLowerCase().split(' ')[1];
   try
   {
@@ -76,7 +76,7 @@ export const RelRotGraphCommand: ICommand = {
   helpDescription: '!rrg',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!rrg'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   const rrg_set = message.content.split(' ')[1];
 
   try
@@ -107,7 +107,7 @@ export const DressingCommand: ICommand = {
   helpDescription: '!dressing [ticker] [start_date (YYYY-MM-DD)] [end_date (YYYY-MM-DD)]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!dressing'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let ticker = "SPY";
   let start_date = "2010-01-01"
   let end_date = "2026-01-01"
@@ -154,7 +154,7 @@ export const VolConeCommand: ICommand = {
   helpDescription: '!cone [ticker] [start_date (YYYY-MM-DD)] [end_date (YYYY-MM-DD)]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!cone'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let ticker = "SPY";
   let start_date = "2022-01-01"
   let end_date = "2023-12-31"
@@ -201,7 +201,7 @@ export const PairsCommand: ICommand = {
   helpDescription: '!pairs [ticker 1] [ticker 2] \n This command is a bit involved. Use !pairs help for more info.',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!pairs'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   
   const args = message.content.toLowerCase().split(' ');
   let ticker_1 = "";
@@ -270,7 +270,7 @@ export const CoTCommand: ICommand = {
   helpDescription: '!cot [ticker]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!cot'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let ticker = "es";
   const args = message.content.toLowerCase().split(' ');
   if(args.length == 2)
@@ -349,7 +349,7 @@ export const VixBinsCommand: ICommand = {
   helpDescription: '!vixbin',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!vixbin'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   const rrg_set = message.content.split(' ')[1];
 
   try
@@ -381,7 +381,7 @@ export const VixReturnsCommand: ICommand = {
   helpDescription: '!vixnext',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!vixnext'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   const rrg_set = message.content.split(' ')[1];
 
   try
@@ -414,7 +414,7 @@ export const RelChartCommand: ICommand = {
   helpDescription: '!rel [ticker1] [ticker2] ... [start_date (YYYY-MM-DD)] [end_date (YYYY-MM-DD)]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!rel'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   const args = message.content.toLowerCase().split(' ').slice(1);
   const dates: string[] = [];
@@ -458,7 +458,7 @@ export const VolSheetCommand: ICommand = {
   helpDescription: 'Generates tearsheet of vol models',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!vixmodels'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   /* let i_rand =  Math.floor(Math.random() * 100);
   if (i_rand < 20) {
 	await message.reply({ files : ["./src/commands/Fuck/images/vixmemories.png"] })
@@ -481,7 +481,7 @@ export const VixCurveCommand: ICommand = {
   showInHelp: true,
   // word boundary after "!vix" so !vixbin/!vixnext/!vixmodels don't also fire this
   trigger: (msg: Message) => /^!vix(\s|$)/.test(msg.content),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
     try {
       const res = await got(`${process.env.MARKET_DASHBOARD_URI}/vixCurveMain`, {
         responseType: 'buffer'
@@ -506,7 +506,7 @@ export const MomoDashCommand: ICommand = {
   helpDescription: 'Generates momentum dashboard',
   showInHelp: true,
   trigger: (msg: Message) => (msg.content.startsWith('!market')),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   try{
     let ftype = '1';
     const image = await got(`${process.env.MARKET_DASHBOARD_URI}/momo_dash/${ftype}`);
@@ -539,7 +539,7 @@ export const MaxLossCommand: ICommand = {
   helpDescription: '!maxloss [ticker]',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!maxloss'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
   let ticker = "AAPL";
   const args = message.content.toLowerCase().split(' ');
   if(args.length == 2)
@@ -574,7 +574,7 @@ export const VRPCommand: ICommand = {
   helpDescription: '!vrp',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!vrp'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
     try {
       const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
       await message.channel.send({files: [`${cotRepoPath}/Figs/3_1_IV_contango.png`]});

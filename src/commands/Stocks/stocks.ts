@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import got from 'got';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { extractFromOptions } from '../../common';
 import { drawMoon } from './moon';
 import { TickerTracker } from '../../services/tickerTracker';
@@ -50,7 +50,7 @@ export const StocksCommand: ICommand = {
     const regex = new RegExp(/^\$[a-zA-Z]+/);
     return regex.test(msg.content);
   },
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const allowedChannelIds = ['725372823429972048', '773959920138584094'];
     //if (allowedChannelIds.includes(message.channel.id)) {
     if (true) {
@@ -179,7 +179,7 @@ export const StockCharts: ICommand = {
   helpDescription: '!sc',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!sc'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     let ticker = message.content.toLowerCase().split(' ')[1];
     ticker = getTicker(ticker);
 
@@ -213,7 +213,7 @@ export const HeatMap: ICommand = {
   helpDescription: '!hm',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!hm'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     try {
       const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
       await new Promise(resolve => setTimeout(resolve, 250));

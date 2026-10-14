@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getCalendarBlock } from './finviz-calendar';
 
 export const CalendarCommand: ICommand = {
@@ -7,7 +7,7 @@ export const CalendarCommand: ICommand = {
   helpDescription: '!econ [day] [next] — economic calendar for today or a specific day (mon–fri); add "next" for next week',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!econ'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const parts = message.content.trim().split(/\s+/).slice(1); // drop '!econ'
 
     let isNext = false;

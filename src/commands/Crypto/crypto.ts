@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import got from 'got';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { extractFromOptions } from '../../common';
 import { TickerTracker } from '../../services/tickerTracker';
 
@@ -10,7 +10,7 @@ export const CryptoCommand: ICommand = {
   helpDescription: '$.{XXX} example $.btc will draw a BTC chart',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('$.'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const ticker = message.content.toLowerCase().split(' ')[0].substring(2);
     const rawOptions = message.content.toLowerCase().split(ticker)[1].substring(1).split(' ');
     const options = [];

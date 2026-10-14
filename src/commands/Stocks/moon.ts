@@ -1,9 +1,9 @@
 import sharp from 'sharp';
 import got from 'got';
 import fs from 'fs';
-import { Message } from 'discord.js';
+import { SendableMessage } from '../../icommand';
 
-export const drawMoon = (imgUrl: string, msg: Message): void => {
+export const drawMoon = (imgUrl: string, msg: SendableMessage): void => {
   const sharpStream = sharp({
     failOnError: false,
   });

@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getCompanyFA } from './finviz-fa';
 
 export const FACommand: ICommand = {
@@ -8,7 +8,7 @@ export const FACommand: ICommand = {
   helpDescription: '!fa aapl',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!fa'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const ticker = message.content.replace('!fa', '').trim();
     const fa_num = await getCompanyFA(ticker);
 

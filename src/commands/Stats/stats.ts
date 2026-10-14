@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getStats } from './finviz-stats';
 
 export const StatsCommand: ICommand = {
@@ -8,7 +8,7 @@ export const StatsCommand: ICommand = {
   helpDescription: '!stats (Gets NYSE stock statistics from FinViz)',
   showInHelp: true,
   trigger: (msg: Message) => msg.content.startsWith('!stats'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     const stats = await getStats();
     message.channel.send({
       embeds: [{

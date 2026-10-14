@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 
 // Hand-written so commands can be grouped and described properly; add new commands here.
 // Discord limits: 25 fields, 1024 chars per field value, 6000 chars per embed.
@@ -61,7 +61,7 @@ export const HelpCommand: ICommand = {
   helpDescription: '!help',
   showInHelp: false,
   trigger: (msg: Message) => msg.content.startsWith('!help'),
-  command: async (message: Message) => {
+  command: async (message: SendableMessage) => {
     try {
       await message.channel.send({
         embeds: [{

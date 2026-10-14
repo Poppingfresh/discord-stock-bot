@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 
-import { ICommand } from '../../icommand';
+import { ICommand, SendableMessage } from '../../icommand';
 import { getBest, getTicker, getWorst } from './data-fetch';
 
 export const SQBestCommand: ICommand = {
@@ -8,7 +8,7 @@ export const SQBestCommand: ICommand = {
   helpDescription: '!sq-best gets the best looking tickers',
   showInHelp: false,
   trigger: (msg: Message) => msg.content.startsWith('!sq-best'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
     const table = await getBest(services.cache);
     // eslint-disable-next-line no-nested-ternary
     table.sort((a, b) => ((a.MEAN < b.MEAN) ? 1 : ((b.MEAN < a.MEAN) ? -1 : 0)));
@@ -37,7 +37,7 @@ export const SQWorstCommand: ICommand = {
   helpDescription: '!sq-worst gets the best looking tickers',
   showInHelp: false,
   trigger: (msg: Message) => msg.content.startsWith('!sq-worst'),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
     const table = await getWorst(services.cache);
     // eslint-disable-next-line no-nested-ternary
     table.sort((a, b) => ((a.MEAN < b.MEAN) ? 1 : ((b.MEAN < a.MEAN) ? -1 : 0)));
@@ -66,7 +66,7 @@ export const SQTickerCommand: ICommand = {
   helpDescription: '!sq {ticker} for 1 ticker ',
   showInHelp: false,
   trigger: (msg: Message) => msg.content.startsWith('!sq '),
-  command: async (message: Message, services: any) => {
+  command: async (message: SendableMessage, services: any) => {
     const ticker = message.content.replace('!sq', '').trim();
     try {
       const tickerInfo = await getTicker(ticker, services.cache);
