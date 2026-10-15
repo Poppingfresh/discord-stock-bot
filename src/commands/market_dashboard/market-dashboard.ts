@@ -297,6 +297,7 @@ export const CoTCommand: ICommand = {
           },
           ],
         });
+	    return;
 	}
 	if(ticker == 'list')
 	{
@@ -322,6 +323,7 @@ export const CoTCommand: ICommand = {
           },
           ],
         });
+	    return;
 	}
   try{
     const image = await got(`${process.env.MARKET_DASHBOARD_URI}/cotchart/${ticker}`);
@@ -336,10 +338,13 @@ export const CoTCommand: ICommand = {
   
   } catch(e)
   {
-    console.error(e);
-
+    if (e.response?.statusCode === 404) {
+      await message.channel.send(`No CoT data for \`${ticker}\`. Use **!cot list** to see the products.`);
+    } else {
+      console.error(e);
+    }
   }
- 
+
     return Promise.resolve();
   },
 };
