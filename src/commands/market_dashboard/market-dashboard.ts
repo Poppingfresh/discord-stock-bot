@@ -513,17 +513,17 @@ export const MomoDashCommand: ICommand = {
   trigger: (msg: Message) => (msg.content.startsWith('!market')),
   command: async (message: SendableMessage, services: any) => {
   try{
-    let ftype = '1';
-    const image = await got(`${process.env.MARKET_DASHBOARD_URI}/momo_dash/${ftype}`);
+    //let ftype = '1';
+    //const image = await got(`${process.env.MARKET_DASHBOARD_URI}/momo_dash/${ftype}`);
 
-    await message.channel
-      .send(
-        {
-          files: [
-            image.rawBody,
-          ],
-        },
-      );
+    //await message.channel
+    //  .send(
+    //    {
+    //      files: [
+    //        image.rawBody,
+    //      ],
+    //    },
+    //  );
 	  
 	const cotRepoPath = process.env.COT_REPO_PATH ?? '/home/data/CoT_Repo';
 	await message.channel.send({files: [`${cotRepoPath}/stockbee_tab.png`]});
