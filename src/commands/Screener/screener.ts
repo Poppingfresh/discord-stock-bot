@@ -12,7 +12,14 @@ export const ScreenerCommand: ICommand = {
   trigger: (msg: Message) => msg.content.startsWith('!screener'),
   command: async (message: SendableMessage) => {
     const url = message.content.replace('!screener', '').trim();
-    const table = await getFinvizScreenWholeTable(url);
+    let table: { [key: string]: string }[];
+    try {
+      table = await getFinvizScreenWholeTable(url);
+    } catch (error) {
+      console.error('Screener command error:', error);
+      message.channel.send('Could not read that screener. Use a finviz link: https://finviz.com/screener/stocks?v=...');
+      return;
+    }
     const arrayLength = Math.min(table.length, 5);
     const fields = table.slice(0, arrayLength).map((value) => ({
       name: value['ticker'] || 'N/A',

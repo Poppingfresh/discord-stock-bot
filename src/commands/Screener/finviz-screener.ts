@@ -29,10 +29,12 @@ interface FinvizScreenerData {
 export const getFinvizScreenWholeTable = async (
   finvizScreenerUrl: string,
 ): Promise<{ [key: string]: string }[]> => {
-  if (!finvizScreenerUrl.startsWith('https://finviz.com/screener.ashx?v=')) {
-    throw Error('Screener must be a finviz screener. https://finviz.com/screener.ashx?v=');
+  // Finviz moved the screener from screener.ashx to screener/stocks (the old URL redirects).
+  if (!finvizScreenerUrl.startsWith('https://finviz.com/screener.ashx?v=')
+    && !finvizScreenerUrl.startsWith('https://finviz.com/screener/stocks?')) {
+    throw Error('Screener must be a finviz screener. https://finviz.com/screener/stocks?v=');
   }
-  
+
   const result = await got(finvizScreenerUrl, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (compatible; discord-stock-bot/1.0)',
@@ -40,28 +42,30 @@ export const getFinvizScreenWholeTable = async (
   });
   const $ = cheerio.load(result.body);
   const scrapedData: { [key: string]: string }[] = [];
-  const tableHeaders: string[] = [];
 
-  // Extract headers dynamically and normalize them.
+  // The results are no longer a <table>: they are role="grid" divs. Header and body
+  // cells share a data-column-id, so map each column id to its normalized full label.
+  // Only the full label is read: headers also carry a short label (Change % / Chg %).
   // '%' is stripped because Finviz renamed "Change" to "Change %"; keeps the key 'change'.
-  $('table.screener_table thead th').each((_i, thElement) => {
-    const header = $(thElement).text().trim().toLowerCase().replace(/[\s%]+/g, '');
-    tableHeaders.push(header);
+  const columnKeys: { [columnId: string]: string } = {};
+  $('.fv-table_header-cell').each((_i, headerElement) => {
+    const columnId = $(headerElement).attr('data-column-id');
+    const label = $(headerElement).find('.fv-table_header-label').first().text();
+    if (columnId) {
+      columnKeys[columnId] = label.trim().toLowerCase().replace(/[\s%]+/g, '');
+    }
   });
 
   // Extract data rows
-  $('table.screener_table tbody tr').each((_index, trElement) => {
-    const tds = $(trElement).find('td');
+  $('.fv-table_row[data-row-key]').each((_index, rowElement) => {
     const tableRow: { [key: string]: string } = {};
-    $(tds).each((i, tdElement) => {
-      const key = tableHeaders[i];
-      const $td = $(tdElement);
-      // Finviz added a company logo to the ticker cell: an <a class="company-ticker">
-      // wrapping an <img> plus a first-letter fallback <span> (e.g. <span>S</span>).
-      // Its text is concatenated ahead of the real ticker anchor by .text(), which
-      // duplicates the first letter (STAK -> "S" + "STAK" = "SSTAK"). Strip it out.
-      $td.find('a.company-ticker').remove();
-      const value = $td.text().trim();
+    $(rowElement).find('.fv-table_cell').each((_i, cellElement) => {
+      const $cell = $(cellElement);
+      const columnId = $cell.attr('data-column-id');
+      const key = columnId ? (columnKeys[columnId] || columnId) : undefined;
+      // The ticker cell includes a logo with a first-letter fallback <span>, so .text()
+      // would double the first letter (SPOT -> "SSPOT"). Read data-ticker instead.
+      const value = ($cell.attr('data-ticker') ?? $cell.text()).trim();
       if (key) {
         tableRow[key] = value;
       }
