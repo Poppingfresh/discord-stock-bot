@@ -1,3 +1,4 @@
+// ABOUTME: Meme and per-member joke commands for the server (images, quips, passive reactions).
 import { Message } from 'discord.js';
 import { ICommand } from '../../icommand';
 import { TickerTracker } from '../../services/tickerTracker';
@@ -219,7 +220,7 @@ export const PixaalCommand: ICommand = {
   name: 'Pixaal',
   helpDescription: 'Pixaal',
   showInHelp: false,
-  trigger: (msg: Message) => (msg.content.toLocaleLowerCase() === '!pixaal'),
+  trigger: (msg: Message) => (msg.content.toLocaleLowerCase() === '!pixaal' || msg.content.toLocaleLowerCase() === '!pix'),
   command: async (message: Message) => {
     let i_rand =  Math.floor(Math.random() * 100);
     if (i_rand < 15) {
@@ -232,6 +233,8 @@ export const PixaalCommand: ICommand = {
 		await message.reply({ files : ["./src/commands/Fuck/images/Pix4.png"] })
 	} else if (i_rand >= 60 && i_rand < 75) {
 		await message.reply({ files : ["./src/commands/Fuck/images/pastra2.gif"] })
+	} else if (i_rand >= 75 && i_rand < 90) {
+		await message.reply("<:thejoke:726248011881119834>")
 	} else {
 	    await message.reply("$gdx d")
 	}
